@@ -23,6 +23,12 @@ public class ModConfig {
     // How often buffered stats are flushed to the database (in seconds)
     public int flush_interval_seconds = 30;
 
+    // Retroactive import: reads world/stats/*.json and pushes all existing vanilla stats.
+    // Only enable this with a CLEAN database, or you'll get duplicate data.
+    // The import runs once then auto-disables (creates a flag file).
+    public String _import_baseline_warning = "Only enable with a clean/empty database! Pushes ALL existing vanilla stats on next startup, then auto-stops.";
+    public boolean import_baseline = false;
+
     public MySQLConfig mysql = new MySQLConfig();
     public SQLiteConfig sqlite = new SQLiteConfig();
     public WebhookConfig webhook = new WebhookConfig();

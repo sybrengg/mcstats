@@ -27,7 +27,9 @@ public class StatsMod implements ModInitializer {
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            BaselineImporter.importIfNeeded(server);
+            if (ModConfig.get().import_baseline) {
+                BaselineImporter.importIfNeeded(server);
+            }
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
