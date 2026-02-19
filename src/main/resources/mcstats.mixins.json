@@ -1,0 +1,19 @@
+{
+	"required": true,
+	"package": "com.sybre.mcstats.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"refmap": "mcstats-refmap.json",
+	"mixins": [
+		"MixinStatHandler",
+		"MixinServerPlayer",
+		"MixinEnchantmentMenu",
+		"MixinEntity",
+		"MixinLivingEntity",
+		"MixinSleep",
+		"MixinBlock",
+		"MixinServerPlayerGameMode"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
