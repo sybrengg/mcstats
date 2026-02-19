@@ -111,6 +111,13 @@ public class StatsCollector {
               .merge(statName, value, Math::max);
     }
 
+    /**
+     * Push a baseline stat snapshot directly to the database (for retroactive import).
+     */
+    public void pushBaseline(UUID playerUUID, Map<String, Integer> stats) {
+        dbManager.pushStats(playerUUID, stats);
+    }
+
     // --- Biome tracking ---
 
     private void checkBiomes() {

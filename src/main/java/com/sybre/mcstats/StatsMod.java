@@ -26,6 +26,10 @@ public class StatsMod implements ModInitializer {
             StatsCollector.getInstance().onPlayerLeave(handler.getPlayer());
         });
 
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            BaselineImporter.importIfNeeded(server);
+        });
+
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             StatsCollector.getInstance().shutdown();
         });
