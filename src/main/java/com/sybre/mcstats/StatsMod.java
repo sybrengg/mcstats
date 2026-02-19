@@ -1,6 +1,7 @@
 package com.sybre.mcstats;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import org.slf4j.Logger;
@@ -17,6 +18,11 @@ public class StatsMod implements ModInitializer {
         // Load config and initialize stats collector
         ModConfig config = ModConfig.load();
         StatsCollector.init(config);
+
+        // Register /mcstats commands
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            ModCommands.register(dispatcher);
+        });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             StatsCollector.getInstance().onPlayerJoin(handler.getPlayer());
