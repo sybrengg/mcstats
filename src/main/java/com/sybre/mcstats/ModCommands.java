@@ -16,7 +16,10 @@ public class ModCommands {
         dispatcher.register(
             Commands.literal("mcstats")
                 .then(Commands.literal("import")
-                    .executes(ctx -> runImport(ctx.getSource()))
+                    .executes(ctx -> runImport(ctx.getSource(), false))
+                    .then(Commands.literal("force")
+                        .executes(ctx -> runImport(ctx.getSource(), true))
+                    )
                 )
                 .then(Commands.literal("status")
                     .executes(ctx -> showStatus(ctx.getSource()))
@@ -24,17 +27,22 @@ public class ModCommands {
         );
     }
 
-    private static int runImport(CommandSourceStack source) {
+    private static int runImport(CommandSourceStack source, boolean force) {
         MinecraftServer server = source.getServer();
 
-        source.sendSuccess(() -> Component.literal("[MC Stats] Starting baseline import..."), true);
+        String mode = force ? "force re-import" : "import";
+        source.sendSuccess(() -> Component.literal("[MC Stats] Starting baseline " + mode + "..."), true);
 
         // Run async to not block the server thread
         new Thread(() -> {
             try {
-                BaselineImporter.importIfNeeded(server);
+                if (force) {
+                    BaselineImporter.forceImport(server);
+                } else {
+                    BaselineImporter.importIfNeeded(server);
+                }
                 server.execute(() ->
-                    source.sendSuccess(() -> Component.literal("[MC Stats] Baseline import complete!"), true)
+                    source.sendSuccess(() -> Component.literal("[MC Stats] Baseline " + mode + " complete!"), true)
                 );
             } catch (Exception e) {
                 server.execute(() ->

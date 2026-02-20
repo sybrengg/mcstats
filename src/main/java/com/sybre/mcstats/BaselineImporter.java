@@ -25,11 +25,34 @@ public class BaselineImporter {
         Path flagFile = worldDir.resolve("mcstats_baseline_imported.flag");
 
         if (Files.exists(flagFile)) {
-            StatsMod.LOGGER.info("Baseline stats already imported, skipping.");
+            StatsMod.LOGGER.info("Baseline stats already imported, skipping. Use /mcstats import force to re-import.");
             return;
         }
 
+        runImport(server);
+    }
+
+    /**
+     * Force a re-import, deleting the flag file first.
+     */
+    public static void forceImport(MinecraftServer server) {
+        Path worldDir = server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT);
+        Path flagFile = worldDir.resolve("mcstats_baseline_imported.flag");
+
+        try {
+            Files.deleteIfExists(flagFile);
+        } catch (IOException e) {
+            StatsMod.LOGGER.error("Failed to delete flag file", e);
+        }
+
+        runImport(server);
+    }
+
+    private static void runImport(MinecraftServer server) {
+        Path worldDir = server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT);
+        Path flagFile = worldDir.resolve("mcstats_baseline_imported.flag");
         Path statsDir = worldDir.resolve("stats");
+
         if (!Files.isDirectory(statsDir)) {
             StatsMod.LOGGER.info("No stats directory found at {}, skipping baseline import.", statsDir);
             return;
