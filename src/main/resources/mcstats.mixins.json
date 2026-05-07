@@ -1,8 +1,7 @@
 {
 	"required": true,
 	"package": "com.sybre.mcstats.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"refmap": "mcstats-refmap.json",
+	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"MixinStatHandler",
 		"MixinServerPlayer",
