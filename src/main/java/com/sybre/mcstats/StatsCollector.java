@@ -146,12 +146,17 @@ public class StatsCollector {
         if (buffer.isEmpty()) return;
 
         int totalStats = 0;
+        int activePlayersCount = 0;
         for (Map.Entry<UUID, ConcurrentHashMap<String, Integer>> entry : buffer.entrySet()) {
-            totalStats += flushPlayer(entry.getKey());
+            int flushed = flushPlayer(entry.getKey());
+            if (flushed > 0) {
+                totalStats += flushed;
+                activePlayersCount++;
+            }
         }
 
         if (totalStats > 0) {
-            StatsMod.LOGGER.info("Flushed {} stat entries for {} players", totalStats, buffer.size());
+            StatsMod.LOGGER.info("Flushed {} stat entries for {} players", totalStats, activePlayersCount);
         }
     }
 
