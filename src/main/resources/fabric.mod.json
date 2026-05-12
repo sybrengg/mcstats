@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "mcstats",
+	"version": "${version}",
+	"name": "MC Stats Mod",
+	"description": "Tracks player statistics and pushes them to an external database.",
+	"authors": [
+		"Sybren"
+	],
+	"contact": {
+		"homepage": "https://github.com/SybrenGL/mcstats",
+		"sources": "https://github.com/SybrenGL/mcstats",
+		"issues": "https://github.com/SybrenGL/mcstats/issues"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/mcstats/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.sybre.mcstats.StatsMod"
+		]
+	},
+	"mixins": [
+		"mcstats.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
