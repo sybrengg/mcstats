@@ -10,7 +10,7 @@ Built for server operators who want dashboards, quest systems, leaderboards, or 
 
 | Mod version | Minecraft | Fabric Loader | Fabric API     | Download |
 |-------------|-----------|---------------|----------------|----------|
-| 2.0.0       | 26.3      | ≥ 0.20.1      | 0.166.2+26.3   | Build from source |
+| 2.0.0       | 26.3      | ≥ 0.20.1      | 0.166.2+26.3   | [Release](../../releases/tag/v2.0.0) |
 | 1.0.0       | 26.1.2    | ≥ 0.19.2      | 0.148.0+26.1.2 | [Releases](../../releases) |
 
 All releases: [GitHub Releases](../../releases). Each release has the built `.jar` attached and includes a changelog.

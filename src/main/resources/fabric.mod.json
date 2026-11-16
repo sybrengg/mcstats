@@ -8,9 +8,9 @@
 		"Sybren"
 	],
 	"contact": {
-		"homepage": "https://github.com/SybrenGL/mcstats",
-		"sources": "https://github.com/SybrenGL/mcstats",
-		"issues": "https://github.com/SybrenGL/mcstats/issues"
+		"homepage": "https://github.com/sybrengg/mcstats",
+		"sources": "https://github.com/sybrengg/mcstats",
+		"issues": "https://github.com/sybrengg/mcstats/issues"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/mcstats/icon.png",
